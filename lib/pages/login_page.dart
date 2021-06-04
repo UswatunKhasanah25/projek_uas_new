@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'sign_in.dart';
-import 'homepage_google.dart';
 import 'sign_up.dart';
-import 'homepage_email.dart';
+import 'package:projek_uas_new/google/home_google.dart';
+import 'package:projek_uas_new/email/home_email.dart';
 
 class LoginPage extends StatefulWidget {
   @override

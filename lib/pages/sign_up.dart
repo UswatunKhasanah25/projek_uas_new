@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projek_uas_new/email/home_email.dart';
 import 'sign_in.dart';
 import 'homepage_email.dart';
 
@@ -93,7 +94,7 @@ class SignUpScreen extends StatelessWidget {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return SignInScreen();
+                                    return HomePageEmail();
                                   },
                                 ),
                               );
