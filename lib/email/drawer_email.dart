@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:projek_uas_new/firestore%20ktg/add_kategori.dart';
+import 'package:projek_uas_new/firestore%20ktg/dashboard_ktg.dart';
+import 'package:projek_uas_new/firestore_menu/add_menu.dart';
+import 'package:projek_uas_new/firestore_menu/dashboard_menu.dart';
 import 'package:projek_uas_new/pages/sign_in.dart';
 import 'package:projek_uas_new/pages/login_page.dart';
 
@@ -36,7 +40,12 @@ class DrawerWithEmail extends StatelessWidget {
           size: 30),
         title: Text("Menu"),
         onTap: () {
-          
+          Navigator.push( 
+            context, 
+            MaterialPageRoute(
+              builder: (context) => DashboardMenu()
+            )
+          );
         }
       ),
       ListTile(
@@ -45,7 +54,12 @@ class DrawerWithEmail extends StatelessWidget {
           size: 30),
         title: Text("Tambah Menu"),
         onTap: () {
-          
+          Navigator.push( 
+            context, 
+            MaterialPageRoute(
+              builder: (context) => AddMenu()
+            )
+          );
         }
       ),
       Divider(
@@ -62,7 +76,12 @@ class DrawerWithEmail extends StatelessWidget {
         ),
         title: Text("Kategori"),
         onTap: () {
-          
+          Navigator.push( 
+            context, 
+            MaterialPageRoute(
+              builder: (context) => DashboardKategori()
+            )
+          );
         }
       ),
       ListTile(
@@ -72,7 +91,12 @@ class DrawerWithEmail extends StatelessWidget {
         ),
         title: Text("Tambah Kategori"),
         onTap: () {
-          
+          Navigator.push( 
+            context, 
+            MaterialPageRoute(
+              builder: (context) => AddKategori()
+            )
+          );
         }
       ),
       Divider(

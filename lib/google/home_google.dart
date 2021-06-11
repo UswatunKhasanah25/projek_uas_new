@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projek_uas_new/firestore ktg/dashboard_ktg.dart';
+import 'package:projek_uas_new/firestore_menu/dashboard_menu.dart';
 import 'drawer_google.dart';
 
 class HomePageGoogle extends StatefulWidget {
@@ -25,7 +27,12 @@ class _HomePageState extends State<HomePageGoogle> {
                 Expanded(
                   child: RaisedButton(
                     onPressed: () {
-                      
+                       Navigator.push( 
+                         context, 
+                         MaterialPageRoute(
+                           builder: (context) => DashboardMenu()
+                         )
+                       );
                     },
                     child: Text("List Menu",
                       style: TextStyle(fontSize: 16)),
@@ -34,7 +41,12 @@ class _HomePageState extends State<HomePageGoogle> {
                 Expanded(
                   child: RaisedButton(
                     onPressed: () {
-                      
+                      Navigator.push( 
+                        context, 
+                        MaterialPageRoute(
+                          builder: (context) => DashboardKategori()
+                        )
+                      );
                     },
                     child: Text("List Kategori",
                       style: TextStyle(fontSize: 16)),

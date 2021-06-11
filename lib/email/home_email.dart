@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projek_uas_new/email/drawer_email.dart';
+import 'package:projek_uas_new/firestore ktg/dashboard_ktg.dart';
+import 'package:projek_uas_new/firestore_menu/dashboard_menu.dart';
 import 'drawer_email.dart';
 
 class HomePageEmail extends StatefulWidget {
@@ -26,7 +28,12 @@ class _HomePageState extends State<HomePageEmail> {
                 Expanded(
                   child: RaisedButton(
                     onPressed: () {
-                      
+                      Navigator.push( 
+                        context, 
+                        MaterialPageRoute(
+                          builder: (context) => DashboardMenu()
+                        )
+                     );
                     },
                     child: Text("List Menu",
                       style: TextStyle(fontSize: 16)),
@@ -35,7 +42,12 @@ class _HomePageState extends State<HomePageEmail> {
                 Expanded(
                   child: RaisedButton(
                     onPressed: () {
-                      
+                      Navigator.push( 
+                        context, 
+                        MaterialPageRoute(
+                          builder: (context) => DashboardKategori()
+                        )
+                     );
                     },
                     child: Text("List Kategori",
                       style: TextStyle(fontSize: 16)),
