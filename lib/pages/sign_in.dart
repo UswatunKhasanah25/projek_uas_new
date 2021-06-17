@@ -55,12 +55,14 @@ Future<User> signUpWithEmail(String nameUser, String email, String password) asy
     UserCredential authResult = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
     User user = authResult.user;
+    userUid = user.uid;
     if (user != null) {
 // Checking if email and name is null
       assert(user.email != null);
       email = user.email;
       assert(nameUser != null);
       name = nameUser;
+      
       
       return user;
     }
@@ -77,6 +79,7 @@ Future<User> signInWithEmail(String emailUser, String password) async {
     UserCredential authResult = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: emailUser, password: password);
     User user = authResult.user;
+    userUid = user.uid;
     if (user != null) {
 // Checking if email and name is null
       assert(user.email != null);

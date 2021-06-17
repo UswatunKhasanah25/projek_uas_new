@@ -14,7 +14,7 @@ class EditMenu extends StatefulWidget {
     this.currentJenis,
     this.currentHarga,
     this.currentStok,
-    this.documentId,
+    this.documentId, String currencyValue, String selectedCurrency,
   });
 
   @override

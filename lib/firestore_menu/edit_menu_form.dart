@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'database_menu.dart';
 import 'package:projek_uas_new/validator.dart';
 import 'package:projek_uas_new/custom_form_field.dart';
+import 'package:projek_uas_new/firestore ktg/database_ktg.dart';
 
 class EditMenuForm extends StatefulWidget {
   final FocusNode menuFocusNode;
@@ -39,6 +41,9 @@ class _EditMenuFormState extends State<EditMenuForm> {
    TextEditingController _jenisController;
    TextEditingController _hargaController;
    TextEditingController _stokController;
+
+  var selectedCurrency, selectedType;
+  var snackBar;
 
   @override
   void initState() {
@@ -97,7 +102,7 @@ class _EditMenuFormState extends State<EditMenuForm> {
                 ),
                 SizedBox(height: 24.0),
                 Text(
-                  'Jenis',
+                  'Kategori',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 22.0,
@@ -106,18 +111,53 @@ class _EditMenuFormState extends State<EditMenuForm> {
                   ),
                 ),
                 SizedBox(height: 8.0),
-                CustomFormField(
-                  isLabelEnabled: false,
-                  controller: _jenisController,
-                  focusNode: widget.jenisFocusNode,
-                  keyboardType: TextInputType.text,
-                  inputAction: TextInputAction.next,
-                  validator: (value) => Validator.validateField(
-                    value: value,
-                  ),
-                  label: 'Jenis',
-                  hint: 'Enter your note jenis'
-                ),
+                StreamBuilder<QuerySnapshot>(
+                  stream: DatabaseKategori.readItems(),
+                  builder: (context, snapshot){
+                    if(!snapshot.hasData){
+                      const Text("Loading...");
+                    } else{
+                      List<DropdownMenuItem> currencyCategory = [];
+                      for(int i=0; i<snapshot.data.docs.length; i++) {
+                        var snap = snapshot.data.docs[i].data();
+                        String category = snap['kategori'];
+                        currencyCategory.add(
+                          DropdownMenuItem(child: Text(category),
+                          value: "${category}",
+                          )
+                        );
+                      }
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          DropdownButton(
+                            focusNode: widget.jenisFocusNode,
+                            items: currencyCategory,
+                            onChanged: (currencyValue) {
+                              final snackBar = SnackBar(
+                                content: Text(
+                                  'Selected Category is $currencyValue',
+                                  //style: TextStyle(color: ),
+                                ),
+                              );
+                              Scaffold.of(context).showSnackBar(snackBar);
+                              setState(() {
+                                selectedCurrency = currencyValue;
+                                _jenisController.text = selectedCurrency;
+                                print(selectedCurrency);
+                              });
+                            },
+                            value: selectedCurrency,
+                              isExpanded: false,
+                              hint: new Text(
+                                "Pilih Kategori Menu",
+                                style: TextStyle(color: Colors.black),
+                              ),
+                          )
+                        ]
+                      );
+                    }
+                  }),
                 SizedBox(height: 24.0),
                 Text(
                   'Harga',
